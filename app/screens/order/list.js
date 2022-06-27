@@ -62,7 +62,7 @@ const CURRENCY = [
 
 export default function App({ navigation }) {
   const [selected, setselected] = useState(CURRENCY[0].name);
-  const { ws} = useContext(SocketContext);
+  const { ws, serverMessages} = useContext(SocketContext);
   const { data, isFetching } = useFetchPairsQuery(selected);
   const [socketData, setsocketData] = useState("1INCH/USD");
   const { data: bookData, isFetching: isFetchingBook } = useFetchBookingQuery(socketData);
@@ -70,8 +70,6 @@ export default function App({ navigation }) {
   const [label, setLabel] = useState(undefined);
   const [filteredOptions, setFilteredOptions] = useState([]);
   
-
-
   const closeModal = () => {
     setVisible(false);
   };
@@ -120,9 +118,6 @@ export default function App({ navigation }) {
       </SafeAreaView>
     );
   }
-
-
-  console.log("i am the data in pairs----->",);
 
   return (
     <Fragment>

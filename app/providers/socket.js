@@ -14,6 +14,7 @@ export default function SocketProvider ({ children }) {
     
 
     const reconnect = React.useCallback(() => {
+        const serverMessagesList = [];
         const wss = new WebSocket(socketUrl)
         wss.onopen = () => {
           console.log('connected')
@@ -28,7 +29,9 @@ export default function SocketProvider ({ children }) {
             setServerState(e.message);
           };
           wss.onmessage = (e) => {
-        };
+            serverMessagesList.push(e.data);
+            setServerMessages([...serverMessagesList])
+          };
          setSocket(wss)
     },[])
 
