@@ -12,20 +12,26 @@ export const mainSliceApi = createApi({
     }),
     endpoints: (build) => ({ 
         fetchCurrency: build.query({
-            query: () => `/pub:list:currency`
+            query: () => `/conf/pub:list:currency`
             // For a list of all currencies on the platform, look to:
         }),
         fetchPairs: build.query({
-            query: () => `/pub:list:pair:exchange`
+            query: (type) => `/conf/pub:list:pair:exchange`
                 // For a list of all trading pairs on the platform, look to:
         }),
         fetchMarginPairs: build.query({
-            query: () => `/pub:list:pair:margin`
+            query: () => `/conf/pub:list:pair:margin`
                //  For a list of all margin trading pairs on the platform, look to:
         }),
+
+        fetchBooking: build.query({
+            query: (pair) => `book/t${pair}/P0`
+               //  For a list of all margin trading pairs on the platform, look to:
+        }),
+
 
     }),
 });
 
 
-export const { useFetchCurrencyQuery, useFetchMarginPairsQuery, useFetchPairsQuery } = mainSliceApi
+export const { useFetchCurrencyQuery, useFetchMarginPairsQuery, useFetchPairsQuery, useFetchBookingQuery } = mainSliceApi
